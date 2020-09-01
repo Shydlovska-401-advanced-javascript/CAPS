@@ -1,0 +1,26 @@
+{
+  "name": "CAPS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose --coverage",
+    "test-watch": "jest --watchAll --verbose --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shydlovska-401-advanced-javascript/CAPS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shydlovska-401-advanced-javascript/CAPS/issues"
+  },
+  "homepage": "https://github.com/Shydlovska-401-advanced-javascript/CAPS#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "faker": "^5.1.0",
+    "jest": "^26.4.2"
+  }
+}
