@@ -5,10 +5,6 @@ const express = require('express');
 const cors = require('cors');
 const faker = require('faker');
 
-// const Queue = require('./lib/queue');
-
-// const queue = new Queue('api');
-
 const socket = io.connect('http://localhost:3000/caps')
 
 const app = express();

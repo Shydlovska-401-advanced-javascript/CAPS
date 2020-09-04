@@ -21,7 +21,6 @@ caps.on('connection', (socket) =>{
         socket.join(room);
       });
 
-      /////////////////????
 
     socket.on('received', orderID => {
 
@@ -39,7 +38,6 @@ caps.on('connection', (socket) =>{
     })
 
 
-//////////////////////?????
 
     socket.on('pickup', (payload) =>{
 
