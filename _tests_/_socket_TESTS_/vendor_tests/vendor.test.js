@@ -4,13 +4,13 @@ let socket = client.connect();
 
 jest.useFakeTimers();
 
-it('should receive delivery politely', () => {
+it.skip('should receive delivery politely', () => {
   console.log = jest.fn();
   socket.emit('delivered', { payload: {orderID : '1234' }});
   expect(console.log).toHaveBeenCalledWith('Thank you for delivering 1234');
 });
 
-it('should emit order', () => {
+it.skip('should emit order', () => {
 
   const callback = jest.fn();
 
