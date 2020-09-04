@@ -1,27 +1,25 @@
 'use strict';
 
 const io = require('socket.io-client');
-const driverChannel = io.connect('http://localhost:3000/caps');
+const socket= io.connect('http://localhost:3000/caps');
 
-// driverChannel.emit('getall'); //?????????
+socket.emit('getall'); //?????????
 
-driverChannel.on('pickup', (payload) => {
-let event = JSON.parse(payload)
-    onPickup(event);
-   
+socket.on('pickup', (order) => {
+    socket.emit('received', order.payload.orderID)  //??????????? or socket?
+    onPickup(order);
 });
 
   
 
 function onPickup(order){
-    // driverChannel.emit('recieved', order.payload.orderID)  //??????????? or socket?!
+   
     setTimeout(() => {
     console.log(`DRIVER: picked up ${order.payload.orderID}`);
     order.event = "in-transit";
     order.time = new Date()
-    let event = JSON.stringify(order);
-    driverChannel.emit('in-transit',event)
-
+    // let event = JSON.stringify(order);
+    socket.emit('in-transit',order)
     inTransit(order)
 }, 1500);
 }
@@ -31,8 +29,8 @@ function inTransit(order) {
     console.log(`DRIVER: delivered ${order.payload.orderID}`);
     order.event = "delivered";
     order.time = new Date();
-    let event = JSON.stringify(order);
-    driverChannel.emit('delivered',event)
+    // let event = JSON.stringify(order);
+    socket.emit('delivered',order)
 }, 3000);
 }
 

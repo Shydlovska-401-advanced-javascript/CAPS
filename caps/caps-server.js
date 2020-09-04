@@ -3,19 +3,9 @@
 
 // // Task 1: queue up the messages 
 
-// const messages = {
-//     //  waiting for messages to queue, sensibly 
+const messages = {}
 
-// //     pickup:{
-// // // need to segment by driver as we;;
-// //      driver:{
-// // // driver releted messages here by some unqueue id
-// //      }
-// //     }
-// }
-
-const io = require('socket.io')(process.env.PORT || 3000);
-
+const io = require('socket.io')(3000);
 
 io.on('connection', (socket) => {
     console.log('CONNECTED', socket.id);
@@ -33,31 +23,31 @@ caps.on('connection', (socket) =>{
 
       /////////////////????
 
-    // socket.on('received', orderID => {
+    socket.on('received', orderID => {
 
-    //     // delete messages
+        // delete messages
 
-    //     delete messages[orderID]
-    //     console.log('deliting ',orderID, messages)
-    // })
+        delete messages[orderID]
+        console.log('deliting ',orderID, messages)
+    })
 
-    // socket. on( 'getall' , () => {
-    //     const payload = messages[id];
-    //     caps.emit('pickup', payload);
-    // })
+    socket. on( 'getall' , () => {
+        for(let id in messages){
+            const payload = messages[id];
+            caps.emit('pickup', payload);
+        }  
+    })
 
 
 //////////////////////?????
 
     socket.on('pickup', (payload) =>{
 
-        //  we need queue up pickup messages
-
-        // messages.[payload.orderID] = payload; /////????
-
         log(payload);
+    
+        messages[payload.payload.orderID] = payload;
 
-        // console.log(messages);
+        console.log(Object.keys(messages).length, 'messages');
 
         caps.emit('pickup', payload);
     })

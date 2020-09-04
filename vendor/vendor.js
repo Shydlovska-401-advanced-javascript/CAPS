@@ -19,7 +19,7 @@ function simulateOrder(){
     
     }
     let time = new Date();
-    let event = JSON.stringify({ event: 'pickup', time: time, payload: newOrder});
+    let event = { event: 'pickup', time: time, payload: newOrder};
     vendorChannel.emit("pickup", event);
 
 
@@ -33,8 +33,7 @@ function start() {
 
 start();
 
-vendorChannel.on('delivered', (payload) =>{
-    let event = JSON.parse(payload)
+vendorChannel.on('delivered', (event) =>{
     console.log(`Thank you for delivering ${event.payload.orderID}`)
 
 });
