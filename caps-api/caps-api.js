@@ -19,21 +19,6 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3001;
 
-// app.post('/delivery/:store/:code', (req, res) => {
-
-//   if (!(req.params.store && req.params.code)) { throw 'Invalid Delivery Params'; }
-
-//   const message = {
-//     store: req.params.store,
-//     code: req.params.code,
-//   };
-
-//   queue.trigger('delivered', message);
-
-//   console.log('triggered', message);
-
-//   res.status(200).send(`${req.params.store} - ${req.params.code} Delivered ${new Date().toUTCString()}`);
-// });
 
 app.post('/pickup', (req, res) => {
 
@@ -46,12 +31,13 @@ app.post('/pickup', (req, res) => {
     address: req.body.address,
   };
 
-  console.log(body);
-  const delivery = hasBody ? req.body : defaultStore;
+  console.log(req.body);
+  let time = new Date();
+  const delivery = { event: 'pickup', time: time, payload: hasBody ? req.body : defaultStore};
 
   socket.emit('pickup', delivery);
   res.status(200).send('scheduled');
 
 });
 
-app.listen(PORT, console.log(`API Server @ ${PORT}`));
+app.listen(PORT, console.log(`listening on ${PORT}`));
