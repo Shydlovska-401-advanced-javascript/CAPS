@@ -2,7 +2,7 @@
   "name": "CAPS",
   "version": "1.0.0",
   "description": "",
-  "main": "caps-server.js",
+  "main": "vendor.js",
   "scripts": {
     "test": "jest --verbose --coverage",
     "test-watch": "jest --watchAll --verbose --coverage"
@@ -21,6 +21,10 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "faker": "^5.1.0",
-    "jest": "^26.4.2"
+    "inquirer": "^7.3.3",
+    "jest": "^26.4.2",
+    "net": "^1.0.2",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
   }
 }
